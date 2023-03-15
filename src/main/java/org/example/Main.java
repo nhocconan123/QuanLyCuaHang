@@ -24,37 +24,46 @@ public class Main {
         System.out.println("9. Xoa hang san xuat");
         System.out.println("0. thoat");
     }
-    public static void option2(Scanner sc)
-    {
-        ProductDOA addproduct= new ProductDOA();
-        products product= new products();
-        System.out.print("product Name \t");
-        product.setProduct_name(sc.nextLine());
-        System.out.print("product price");
-        product.setProduct_price(Integer.parseInt(sc.nextLine()));
-        System.out.println("product size");
-        product.setProduct_size(sc.nextLine());
-        System.out.println("product color");
-        product.setProduct_color(sc.nextLine());
-        BrandDOA brandDOA=new BrandDOA();
-        List<brands> brands=brandDOA.getAll();
-        System.out.println(brands);
-        System.out.println("nhap thuong hieu");
-        product.setBrand_id(Integer.parseInt(sc.nextLine()));
-        addproduct.insertProduct(product);
-
-    }
     private static void option1()
     {
         ProductDOA productDOA= new ProductDOA();
         List<products> productList = productDOA.getAll1();
         System.out.printf("%-20s %-20s %-20s %-20s", "STT", "Tên sản phẩm", "Giá sản phẩm", "Màu sắc");
         System.out.println();
-        for (int i = 0; i < productList.size(); i++) {
-            products p = productList.get(i);
-            System.out.printf("%-20d %-20s %-20d %-20s\n", (i+1), p.getProduct_name(), p.getProduct_price(), p.getProduct_color());
-        };
+        for (products pr:productDOA.getAll1()) {
+            System.out.println(pr);
+            System.out.printf("%-20d %-20s %-20d %-20s\n", (pr.getId()), pr.getProduct_name(), pr.getProduct_price(), pr.getProduct_color());
+        }
+//        for (int i = 0; i < productList.size(); i++) {
+//            products p = productList.get(i);
+//            System.out.printf("%-20d %-20s %-20d %-20s\n", (i+1), p.getProduct_name(), p.getProduct_price(), p.getProduct_color());
+//        };
     }
+    public static void option2(Scanner sc)
+    {
+        ProductDOA addproduct= new ProductDOA();
+        products product= new products();
+        System.out.print("product Name \t");
+        product.setProduct_name(sc.nextLine());
+        System.out.print("product price \t");
+        product.setProduct_price(Integer.parseInt(sc.nextLine()));
+        System.out.print("product size \t");
+        product.setProduct_size(sc.nextLine());
+        System.out.print("product color \t");
+        product.setProduct_color(sc.nextLine());
+        BrandDOA brandDOA=new BrandDOA();
+        List<brands> brands=brandDOA.getAll();
+        System.out.printf("%-20s %-20s", "ID Danh Muc", "Tên Danh Muc");
+        System.out.println();
+        for (brands b:brandDOA.getAll()) {
+            System.out.printf("%-20s %-20s \n",b.getId(), b.getBrand_name());
+        }
+        System.out.print("nhap thuong hieu \t");
+        product.setBrand_id(Integer.parseInt(sc.nextLine()));
+        addproduct.insertProduct(product);
+
+    }
+
     private static void option3(Scanner sc)
     {
         System.out.println("nhap id can xoa");
@@ -87,12 +96,9 @@ public class Main {
     }
     public static void option5()
     {
-
         BrandDOA brandDOA= new BrandDOA();
+        System.out.printf("%-20s %-20s \n", "Thương hiệu","số lượng sản phẩm");
         brandDOA.getAllProductByBrand();
-
-        System.out.printf("%-20s %-20s", "Tên Thương Hiêu", "Số lượng sản phẩm");
-
     }
     public static  void option6()
     {

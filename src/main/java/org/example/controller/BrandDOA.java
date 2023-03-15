@@ -60,6 +60,7 @@ public class BrandDOA {
         return b;
     }
     public List<brands> getAllProductByBrand() {
+
         try {
             Connection conn= MyConnection.getConnection();
             String query ="select brand_name,count(products.id)  as soluong from products inner join brands on products.brand_id=brands.id group by brand_id";
@@ -69,9 +70,10 @@ public class BrandDOA {
 
 
             while (rs.next()) {
+
                 String brand_name = rs.getString("brand_name");
                 int soluong  = rs.getInt("soluong");
-                System.out.println(brand_name + "  " + soluong);
+                System.out.printf("%-20s %-20s \n", brand_name,soluong);
             }
         }catch (Exception e)
         {
