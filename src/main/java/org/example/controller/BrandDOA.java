@@ -59,20 +59,19 @@ public class BrandDOA {
         }
         return b;
     }
-    public List<products> getAllProductByBrand() {
+    public List<brands> getAllProductByBrand() {
         try {
             Connection conn= MyConnection.getConnection();
-            String query ="SELECT fname,lname,isbn from author inner join books on author.AUTHORID = books.AUTHORID";
+            String query ="select brand_name,count(products.id)  as soluong from products inner join brands on products.brand_id=brands.id group by brand_id";
 
             Statement stmt= conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            System.out.println("Fname  Lname   ISBN");
+
 
             while (rs.next()) {
-                String fname = rs.getString("fname");
-                String lname = rs.getString("lname");
-                int isbn = rs.getInt("isbn");
-                System.out.println(fname + "  " + lname+"   "+isbn);
+                String brand_name = rs.getString("brand_name");
+                int soluong  = rs.getInt("soluong");
+                System.out.println(brand_name + "  " + soluong);
             }
         }catch (Exception e)
         {

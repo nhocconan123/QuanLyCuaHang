@@ -87,11 +87,30 @@ public class Main {
     }
     public static void option5()
     {
+
         BrandDOA brandDOA= new BrandDOA();
-        //List<brands> brandsList = brandDOA.getAllProductByBrand();
+        brandDOA.getAllProductByBrand();
 
         System.out.printf("%-20s %-20s", "Tên Thương Hiêu", "Số lượng sản phẩm");
 
+    }
+    public static  void option6()
+    {
+        System.out.println("6.Sắp xếp danh sach theo gia.");
+        ProductDOA productDOA= new ProductDOA();
+        List<products> productList = productDOA.getAll1();
+
+        productList.stream()
+                .sorted((o1, o2) -> {
+                    if (o1.getProduct_price() > o2.getProduct_price()) {
+                        return -1;
+                    } else if (o1.getProduct_price() < o2.getProduct_price()) {
+                        return 1;
+                    }
+                    return 0;
+                })
+                .limit(5)
+                .forEach(e -> System.out.println(e));
     }
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
@@ -121,6 +140,9 @@ public class Main {
                     break;
                 case 5:
                     option5();
+                    break;
+                case 6:
+                    option6();
                     break;
             }
         }while (option !=0);
