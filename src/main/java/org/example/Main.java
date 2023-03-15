@@ -46,14 +46,6 @@ public class Main {
     }
     private static void option1()
     {
-//        ProductDOA productDOA= new ProductDOA();
-//        List<products> product=productDOA.getAll();
-//        String leftAlignFormat = "| %-5d | %-13s | %-12d | %-7s  | %n";
-//        System.out.format("+-------+---------------+--------------+----------+%n");
-//        System.out.format("| STT   | Tên sản phẩm  | Giá sản phẩm | Màu sắc  |%n");
-//        System.out.format("+-------+---------------+--------------+----------+%n");
-//        System.out.println(product.toString());
-//        String leftAlignFormat1 = "| %-5d"+product.toString()+" | %-13s | %-12d | %-7s  | %n";
         ProductDOA productDOA= new ProductDOA();
         List<products> productList = productDOA.getAll1();
         System.out.printf("%-20s %-20s %-20s %-20s", "STT", "Tên sản phẩm", "Giá sản phẩm", "Màu sắc");
@@ -95,11 +87,11 @@ public class Main {
     }
     public static void option5()
     {
-        ProductDOA productDOA= new ProductDOA();
-        List<products> productList = productDOA.getAll2();
+        BrandDOA brandDOA= new BrandDOA();
+        //List<brands> brandsList = brandDOA.getAllProductByBrand();
 
         System.out.printf("%-20s %-20s", "Tên Thương Hiêu", "Số lượng sản phẩm");
-        System.out.println(productList);
+
     }
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
